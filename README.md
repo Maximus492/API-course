@@ -1,3 +1,3 @@
-# API-course-stuff
-API Course Stuff
+# API-course
+API Course
 Zapier stuff committing
