@@ -1,0 +1,458 @@
+#%RAML 1.0
+---
+title: music hub API
+baseUri: http://127.0.0.1:4000/api/{version}
+version: v1
+/users:
+    /{register}:
+        post: 
+            description: Register User|
+            headers: 
+            body: 
+                application/json:
+                example: |  
+                    {
+                    "first_name":  "String",
+                    "last_name":  "String",
+                    "id": "String"
+                    "email":  "String",
+                    "password":  "String"
+                    }
+            responses:
+                200:
+                    body:
+                        
+                    {
+                    "first_name":  "String",
+                    "last_name":  "String",
+                    "id": "String"
+                    "email":  "String",
+                    "password":  "String",
+                    "token": String
+                    }
+    /{login}:
+        post: 
+            description: Login User, returns x-access token|
+            headers: 
+            body: 
+                application/json:
+                example: |  
+                    {    
+                        "email":  "String",
+                        "password":  "String"
+                    }
+            responses:
+                200:
+                    {
+                    "first_name":  "String",
+                    "last_name":  "String",
+                    "id": "String"
+                    "email":  "String",
+                    "password":  "String",
+                    "token": String
+                    } 
+    /{welcome}:
+        post: 
+            description: Welcome User, can be used to test token|
+            headers: { x-access-token }
+            body: 
+            responses:
+                200:
+                    {
+                    "Welcome"
+                    } 
+    /{getAllUser}:
+        get:
+            description: returns list of all users|
+            headers: { x-access-token }
+            body: 
+            responses:
+                200:
+                    {
+                    "first_name":  "String",
+                    "last_name":  "String",
+                    "id": "String"
+                    "email":  "String",
+                    "password":  "String",
+                    } 
+    /{getOneUserByMongoDBID}/{mongoDB id}:
+        get:
+            description: get one user by mongoDB id|
+            headers: { x-access-token }
+            body: 
+            responses:
+                200:
+                    {
+                    "first_name":  "String",
+                    "last_name":  "String",
+                    "id": "String"
+                    "email":  "String",
+                    "password":  "String",
+                    } 
+    /{deleteUserByMongoDBID}/{mongoDB id}:
+        delete:
+            description: delete one user by mongoDB id|
+            headers: { x-access-token }
+            body: 
+            responses:
+                200:
+                    {
+                    `Document has been deleted..`
+                    }
+    /{updateUserByMongoDBID}/{mongoDB id}:
+        patch:
+            description: update one user by mongoDB id|
+            headers: { x-access-token }
+            body:   
+                    {
+                    "first_name":  "String",
+                    "last_name":  "String",
+                    "id": "String"
+                    "email":  "String",
+                    "password":  "String",
+                    } 
+            responses:
+                200:
+                    {
+                    `Document has been deleted..`
+                    }
+  /album:
+    /{postAlbum}:
+        post:  
+            description: enter a album doucment|
+            headers: { x-access-token }
+            body: 
+                    {
+                    "album_id": number,
+                    "album_name": "string",
+                    "artist":[{"artist_id": number,"artist_name": "string"}],
+                    "year_released": string,    
+                    "genres": "string", 
+                    "length": number,             
+                    "label": "string", 
+                    "producer": "string", 
+                    "total_tracks" : number
+                    }
+            responses:
+                200:    
+                    {
+                    "album_id": number,
+                    "album_name": "string",
+                    "artist":[{"artist_id": number,"artist_name": "string"}],
+                    "year_released": string,    
+                    "genres": "string", 
+                    "length": number,             
+                    "label": "string", 
+                    "producer": "string", 
+                    "total_tracks" : number
+                    }
+    /{getAllAlbums}:
+        get: 
+            description: returns all album document|
+            headers: { x-access-token }
+            body: 
+            responses:
+                200:
+                    {
+                    "album_id": number,
+                    "album_name": "string",
+                    "artist":[{"artist_id": number,"artist_name": "string"}],
+                    "year_released": string,    
+                    "genres": "string", 
+                    "length": number,             
+                    "label": "string", 
+                    "producer": "string", 
+                    "total_tracks" : number
+                    }
+    /{getAllAlbumsByArtist}/{artist}:
+        get:
+            description: returns all album document with artist name|
+            headers: { x-access-token }
+            body: 
+            responses:
+                200:
+                    {
+                    "album_id": number,
+                    "album_name": "string",
+                    "artist":[{"artist_id": number,"artist_name": "string"}],
+                    "year_released": string,    
+                    "genres": "string", 
+                    "length": number,             
+                    "label": "string", 
+                    "producer": "string", 
+                    "total_tracks" : number
+                    }
+    /{getAllAlbumsByLabel}/{label}:
+        get:
+            description: returns all album document with artist name|
+            headers: { x-access-token }
+            body: 
+            responses:
+                200:
+                    {
+                    "album_id": number,
+                    "album_name": "string",
+                    "artist":[{"artist_id": number,"artist_name": "string"}],
+                    "year_released": string,    
+                    "genres": "string", 
+                    "length": number,             
+                    "label": "string", 
+                    "producer": "string", 
+                    "total_tracks" : number
+                    }
+    /{getAllAlbumsByProducer}/{producer}:
+        get:
+            description: returns all album document with artist|
+            headers: { x-access-token }
+            body: 
+            responses:
+                200:
+                    {
+                    "album_id": number,
+                    "album_name": "string",
+                    "artist":[{"artist_id": number,"artist_name": "string"}],
+                    "year_released": string,    
+                    "genres": "string", 
+                    "length": number,             
+                    "label": "string", 
+                    "producer": "string", 
+                    "total_tracks" : number
+                    }
+    /{getOneAlbumByAlbumID}/{album_id}:
+        get:
+            description: returns all album document with album_id|
+            headers: { x-access-token }
+            body: 
+            responses:
+                200:
+                    {
+                    "album_id": number,
+                    "album_name": "string",
+                    "artist":[{"artist_id": number,"artist_name": "string"}],
+                    "year_released": string,    
+                    "genres": "string", 
+                    "length": number,             
+                    "label": "string", 
+                    "producer": "string", 
+                    "total_tracks" : number
+                    }
+    /{getOneAlbumByAlbumName}/{album_name}:
+        get:
+            description: returns all album document with album name|
+            headers: { x-access-token }
+            body: 
+            responses:
+                200:
+                    {
+                    "album_id": number,
+                    "album_name": "string",
+                    "artist":[{"artist_id": number,"artist_name": "string"}],
+                    "year_released": string,    
+                    "genres": "string", 
+                    "length": number,             
+                    "label": "string", 
+                    "producer": "string", 
+                    "total_tracks" : number
+                    }
+    /{getOneAlbumByMongoDBID}/{mongo_id}:
+        get:
+            description: returns all album document with mongoDB id|
+            headers: { x-access-token }
+            body: 
+            responses:
+                200:
+                    {
+                    "album_id": number,
+                    "album_name": "string",
+                    "artist":[{"artist_id": number,"artist_name": "string"}],
+                    "year_released": string,    
+                    "genres": "string", 
+                    "length": number,             
+                    "label": "string", 
+                    "producer": "string", 
+                    "total_tracks" : number
+                    }
+    /{deleteAlbumByMongoDBID}/{mongo_id}:
+        delete:
+            description: delete album document with mongoDB id|
+            headers: { x-access-token }
+            body: 
+            responses:
+                200:
+                    {
+                    `Album with name - ${data.album_name} - has been deleted..`
+                    }
+    /{deleteAlbumByAlbumID}/{album_id}:
+        delete:
+            description: delete album document with album id|
+            headers: { x-access-token }
+            body: 
+            responses:
+                200:
+                    {
+                    `Album with name - ${data.album_name} - has been deleted..`
+                    }
+    /{deleteAlbumByAlbumName}/{album_name}:
+        delete:
+            description: delete album document with album name|
+            headers: { x-access-token }
+            body: 
+            responses:
+                200:
+                    {
+                    `Album with name - ${data.album_name} - has been deleted..`
+                    }
+    /{updateAlbumByMongoDBID}/{mongo_id}:
+        patch:
+            description: update album document with mongoDB id, body shows possible inserts|
+            headers: { x-access-token }
+            body:   
+                    {
+                    "album_id": number,
+                    "album_name": "string",
+                    "artist":[{"artist_id": number,"artist_name": "string"}],
+                    "year_released": string,    
+                    "genres": "string", 
+                    "length": number,             
+                    "label": "string", 
+                    "producer": "string", 
+                    "total_tracks" : number
+                    }
+            responses:
+                200:
+                    {
+                    "album_id": number,
+                    "album_name": "string",
+                    "artist":[{"artist_id": number,"artist_name": "string"}],
+                    "year_released": string,    
+                    "genres": "string", 
+                    "length": number,             
+                    "label": "string", 
+                    "producer": "string", 
+                    "total_tracks" : number
+                    }
+    /{updateAlbumByAlbumID}/{album_id}:
+        patch:
+            description: update album document with album id, body shows possible inserts|
+            headers: { x-access-token }
+            body:   
+                    {
+                    "album_id": number,
+                    "album_name": "string",
+                    "artist":[{"artist_id": number,"artist_name": "string"}],
+                    "year_released": string,    
+                    "genres": "string", 
+                    "length": number,             
+                    "label": "string", 
+                    "producer": "string", 
+                    "total_tracks" : number
+                    }
+            responses:
+                200:
+                    {
+                    "album_id": number,
+                    "album_name": "string",
+                    "artist":[{"artist_id": number,"artist_name": "string"}],
+                    "year_released": string,    
+                    "genres": "string", 
+                    "length": number,             
+                    "label": "string", 
+                    "producer": "string", 
+                    "total_tracks" : number
+                    }
+    /{updateAlbumByAlbumName}/{album_name}:
+        patch:
+            description: update album document with album name, body shows possible inserts|
+            headers: { x-access-token }
+            body:   
+                    {
+                    "album_id": number,
+                    "album_name": "string",
+                    "artist":[{"artist_id": number,"artist_name": "string"}],
+                    "year_released": string,    
+                    "genres": "string", 
+                    "length": number,             
+                    "label": "string", 
+                    "producer": "string", 
+                    "total_tracks" : number
+                    }
+            responses:
+                200:
+                    {
+                    "album_id": number,
+                    "album_name": "string",
+                    "artist":[{"artist_id": number,"artist_name": "string"}],
+                    "year_released": string,    
+                    "genres": "string", 
+                    "length": number,             
+                    "label": "string", 
+                    "producer": "string", 
+                    "total_tracks" : number
+                    }
+  /artist:
+    /{postArtist}:
+        post:
+            description: create new artist document|
+            headers: { x-access-token }
+            body:
+                    {
+                    "artist_id": number,
+                    "artist_name": "string", 
+                    "single_or_band_name": "string" 
+                    }
+            responses:
+                200:
+                    {
+                    "artist_id": number,
+                    "artist_name": "string", 
+                    "single_or_band_name": "string" 
+                    }
+    /{getAllArtist}:
+        get:
+            description: returns all artist documents|
+            headers: { x-access-token }
+            body:
+            responses:
+                200:
+                    {
+                    "artist_id": number,
+                    "artist_name": "string", 
+                    "single_or_band_name": "string" 
+                    }
+    /{getOneArtistByMongoDBID}:
+        get:
+            description: returns one artist document by mongodb id|
+            headers: { x-access-token }
+            body:
+            responses:
+                200:
+                    {
+                    "artist_id": number,
+                    "artist_name": "string", 
+                    "single_or_band_name": "string" 
+                    }
+    /{deleteArtistByMongoDBID}:
+        delete:
+            description: deletes one artist document by mongodb id|
+            headers: { x-access-token }
+            body:
+            responses:
+                200:
+                    {
+                    "artist_id": number,
+                    "artist_name": "string", 
+                    "single_or_band_name": "string" 
+                    }
+    /{updateArtistByMongoDBID}:
+        patch:
+            description: update one artist document by mongoDB id|
+            headers: { x-access-token }
+            body:
+            responses:
+                200:
+                    {
+                    "artist_id": number,
+                    "artist_name": "string", 
+                    "single_or_band_name": "string" 
+                    }
+

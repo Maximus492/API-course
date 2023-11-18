@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+
+<style>
+    :root {
+        --colorOne: #ff5500;
+        --colorTwo: rgba(255,255,255,.8);
+        --colorThree: rgba(255,255,255,.5);
+        --colorFour: #ffffff;
+    }
+    
+    .navbar-custom {
+        background-color: var(--colorOne);
+    }
+    /* change the brand and text color */
+    .navbar-custom .navbar-brand,
+    .navbar-custom .navbar-text {
+        color: var(--colorTwo);
+    }
+    /* change the link color */
+    .navbar-custom .navbar-nav .nav-link {
+        color: var(--colorThree);
+    }
+    /* change the color of active or hovered links */
+    .navbar-custom .nav-item.active .nav-link,
+    .navbar-custom .nav-item:hover .nav-link {
+        color: var(--colorFour);
+    }
+    
+    /* CONTROL CAROUSEL SPEED BELOW 
+    .carousel .carousel-item {
+        transition-duration: 3s;
+    }
+    */
+    
+    /*  CODE FOR CHANGING A ARROW TO A HAND ON C1, C2, AND C3 BOXES  */
+    #c1, #c2, #c3:hover,button:hover { cursor: pointer;}
+</style>
+
+
+<body>
+   <!-- NAV BAR BELOW-->
+   <nav class="navbar navbar-expand-sm navbar-custom">
+    <a class="navbar-brand" href="#">Navbar w/ text</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Features</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Pricing</a>
+        </li>
+      </ul>
+      <span class="navbar-text">
+        Navbar text with an inline element
+      </span>
+    </div>
+</nav>
+
+
+
+
+<header id="home-section">
+    <div class="home-inner container">
+      <div class="row">
+        <div class="col">
+        <h1 class="display-3">Albums</h1>
+                  <h3 class="lead">Here are the current Albums</h3>
+                  <h3 class="lead">---</h3>
+              <!--     <a href="#" class="btn btn-lg">View Vehicles</a>  -->
+        </div>
+      </div>
+    </div>
+</header>
+
+
+<script>
+
+
+/* new XMLHttpRequest();
+
+http://127.0.0.1:4000/api/getAllAlbums
+function UserAction() {
+    console.log("hello");
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+         if (this.readyState == 4 && this.status == 200) {
+             alert(this.responseText);
+         }
+    };
+    xhttp.open("GET", "http://127.0.0.1:4000/api/getAllAlbums", true);
+    //xhttp.setRequestHeader("Content-type", "application/json");
+    //xhttp.send("Your JSON Data Here");
+}
+*/
+
+
+</script>
+
+
+
+<!--  new XMLHttpRequest();
+<button type="submit" onclick="UserAction()">Search</button>
+-->
+<h1>Authors</h1>
+<ul id="albums"></ul>
+
+<script>
+  const ul = document.getElementById('albums');
+  const list = document.createDocumentFragment();
+  const url = 'http://127.0.0.1:4000/api/getAllAlbums';
+
+  fetch(url)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      let albums = data;
+
+      albums.map(function(author) {
+        let li = document.createElement('li');
+        let name = document.createElement('h2');
+        let email = document.createElement('span');
+
+        name.innerHTML = `${album.name}`;
+        email.innerHTML = `${author.email}`;
+
+        li.appendChild(name);
+        li.appendChild(email);
+        list.appendChild(li);
+      });
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+
+
+    </script>
+
+
+
+
+</body>
+
+   <!-- TEST CODE FOR JQUERY -->
+   <script>
+    /* test code  */
+    if ('undefined' == typeof window.jQuery) {
+        alert("jQuery not present");
+    } else {
+        alert("jQuery present");
+    }
+    </script>
+
+</html>
